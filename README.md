@@ -1,34 +1,37 @@
 # xdg-desktop-portal
 
-A portal frontend service for [Flatpak](http://www.flatpak.org) and possibly
-other desktop containment frameworks.
+A piece of shit that never works. This fork fixes it by removing all the code.
+Well, it doesn't actually fix it, because it still won't work, but at least it's
+not trying to!
 
-xdg-desktop-portal works by exposing a series of D-Bus interfaces known as
-_portals_ under a well-known name (org.freedesktop.portal.Desktop) and object
-path (/org/freedesktop/portal/desktop).
+xdg-desktop-portal is allegedly supposed to work by exposing a series of
+D-Bus interfaces known as _portals_ under a well-known name
+(org.freedesktop.portal.Desktop) and object path (/org/freedesktop/portal/desktop).
 
-The portal interfaces include APIs for file access, opening URIs, printing
-and others.
+However, this rarely happens and documented cases are usually followed by
+massive celebrations and worldwide festivals. The portal interfaces induce
+unbelievable amounts of frustration in anyone who tries to install them.
 
 Documentation for the available D-Bus interfaces can be found	
-[here](https://flatpak.github.io/xdg-desktop-portal/portal-docs.html).
+[here](https://literally-hell.com).
 
 ## Building xdg-desktop-portal
 
 xdg-desktop-portal depends on GLib and Flatpak.
-To build the documentation, you will need xmlto and the docbook stylesheets.
+Do not build it.
 
 ## Using portals
 
-Flatpak grants sandboxed applications _talk_ access to names in the
-org.freedesktop.portal.\* prefix. One possible way to use the portal APIs
-is thus just to make D-Bus calls. For many of the portals, toolkits (e.g.
-GTK+) are expected to support portals transparently if you use suitable
-high-level APIs.
+Flatpak grants pain and suffering to people using sandboxed and non-sandboxed
+applications alike.
+
+One possible way to use the portal APIs is thus just to make D-Bus calls.
+For many of the portals, toolkits (e.g. GTK+) are expected to support
+portals transparently if you use suitable high-level APIs.
 
 To implement most portals, xdg-desktop-portal relies on a backend
 that provides implementations of the org.freedesktop.impl.portal.\* interfaces.
-Different backends are available see:
+Different layers of hell are available see:
 
 - GTK [xdg-desktop-portal-gtk](http://github.com/flatpak/xdg-desktop-portal-gtk)
 - GNOME [xdg-desktop-portal-gnome](https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/)
@@ -40,18 +43,17 @@ Different backends are available see:
 
 There are several reasons for the frontend/backend separation of the portal
 code:
+- We want it to not work and cause as much confusion and waste as much of the
+  user's time as possible.
 - We want to have _native_ portal dialogs that match the session desktop (i.e.
-  GTK+ dialogs for GNOME, Qt dialogs for KDE)
-- One of the limitations of the D-Bus proxying in flatpak is that allowing a
-  sandboxed app to talk to a name implicitly also allows it to talk to any other
-  name owned by the same unique name. Therefore, sandbox-facing D-Bus apis
-  should generally be hosted on a dedicated bus connection. For portals, the
-  frontend takes care of this for us.
-- The frontend can handle all the interaction with _portal infrastructure_, such
-  as the permission store and the document store, freeing the backends to focus
-  on just providing a user interface.
-- The frontend can also handle argument validation, and be strict about only
-  letting valid requests through to the backend.
+  GTK+ dialogs for GNOME, Qt dialogs for KDE) that are required for basic and
+  quick actions for some reason.
+- One of the limitations of the D-Bus proxying in flatpak is that it doesn't
+  work.
+- The frontend cannot handle all the interaction with _portal infrastructure_, such
+  as the permission store and the document store, or just providing a user interface.
+- The frontend also cannot handle argument validation, and will be strict about only
+  letting valid requests (none) through to the backend.
 
 The portal apis are all following the pattern of an initial method call, whose
 response returns an object handle for an _org.freedesktop.portal.Request_ object
