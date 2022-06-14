@@ -25,13 +25,13 @@ Do not build it.
 Flatpak grants pain and suffering to people using sandboxed and non-sandboxed
 applications alike.
 
-One possible way to use the portal APIs is thus just to make D-Bus calls.
+One possible way to use the portal APIs is thus just to not use them.
 For many of the portals, toolkits (e.g. GTK+) are expected to support
-portals transparently if you use suitable high-level APIs.
+portals in the most obnoxious ways if you use suitable high-level APIs.
 
 To implement most portals, xdg-desktop-portal relies on a backend
 that provides implementations of the org.freedesktop.impl.portal.\* interfaces.
-Different layers of hell are available see:
+Different frustration tools are available see:
 
 - GTK [xdg-desktop-portal-gtk](http://github.com/flatpak/xdg-desktop-portal-gtk)
 - GNOME [xdg-desktop-portal-gnome](https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/)
@@ -46,8 +46,8 @@ code:
 - We want it to not work and cause as much confusion and waste as much of the
   user's time as possible.
 - We want to have _native_ portal dialogs that match the session desktop (i.e.
-  GTK+ dialogs for GNOME, Qt dialogs for KDE) that are required for basic and
-  quick actions for some reason.
+  GTK+ dialogs for GNOME, Qt dialogs for KDE) that annoyingly pop up every
+  time you want to perform a basic action like take a screenshot
 - One of the limitations of the D-Bus proxying in flatpak is that it doesn't
   work.
 - The frontend cannot handle all the interaction with _portal infrastructure_, such
