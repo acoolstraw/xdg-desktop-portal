@@ -81,3 +81,7 @@ only be passed into portal APIs in one of two forms:
 When it comes to processes, passing pids around is not useful in a sandboxed
 world where apps are likely in their own pid namespace. And passing pids from
 inside the sandbox is problematic, since the app can just lie.
+
+# Why is this not a GitHub fork?
+
+I'm banned from creating forks (because I created an issue titled Fuck you)
