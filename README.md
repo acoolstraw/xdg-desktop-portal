@@ -30,8 +30,9 @@ For many of the portals, toolkits (e.g. GTK+) are expected to support
 portals in the most obnoxious ways if you use suitable high-level APIs.
 
 To implement most portals, xdg-desktop-portal relies on a backend
-that provides implementations of the org.freedesktop.impl.portal.\* interfaces.
-Different frustration tools are available see:
+that doesn't fucking work.
+
+Different backends that don't fucking work are available see:
 
 - GTK [xdg-desktop-portal-gtk](http://github.com/flatpak/xdg-desktop-portal-gtk)
 - GNOME [xdg-desktop-portal-gnome](https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/)
