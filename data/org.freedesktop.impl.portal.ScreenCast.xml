@@ -1,0 +1,279 @@
+<?xml version="1.0"?>
+<!--
+ Copyright (C) 2017 Red Hat, Inc.
+
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2 of the License, or (at your option) any later version.
+
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public
+ License along with this library. If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<node name="/" xmlns:doc="http://www.freedesktop.org/dbus/1.0/doc.dtd">
+  <!--
+      org.freedesktop.impl.portal.ScreenCast:
+      @short_description: Screen cast portal backend interface
+
+      The Screen cast portal allows to create screen cast sessions.
+
+      This documentation describes version 4 of this interface.
+  -->
+  <interface name="org.freedesktop.impl.portal.ScreenCast">
+    <!--
+        CreateSession:
+        @handle: Object path for the #org.freedesktop.impl.portal.Request object representing this call
+        @session_handle: Object path for the #org.freedesktop.impl.portal.Session object representing the session being created
+        @app_id: App id of the application
+        @options: Vardict with optional further information
+        @response: Numeric response
+        @results: Vardict with the results of the call
+
+        Create a screen cast session.
+
+        The following results get returned via the #org.freedesktop.portal.Request::Response signal:
+        <variablelist>
+          <varlistentry>
+            <term>session_id s</term>
+            <listitem><para>
+              The session id. A string representing the created screen cast session.
+            </para></listitem>
+          </varlistentry>
+      </variablelist>
+    -->
+    <method name="CreateSession">
+      <arg type="o" name="handle" direction="in"/>
+      <arg type="o" name="session_handle" direction="in"/>
+      <arg type="s" name="app_id" direction="in"/>
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In3" value="QVariantMap"/>
+      <arg type="a{sv}" name="options" direction="in"/>
+      <arg type="u" name="response" direction="out"/>
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out1" value="QVariantMap"/>
+      <arg type="a{sv}" name="results" direction="out"/>
+    </method>
+    <!--
+        SelectSources:
+        @handle: Object path for the #org.freedesktop.impl.portal.Request object representing this call
+        @session_handle: Object path for the #org.freedesktop.impl.portal.Session object representing the session
+        @app_id: App id of the application
+        @session_id: Session identifier
+        @options: Vardict with optional further information
+        @response: Numeric response
+        @results: Vardict with the results of the call
+
+        Configure what the screen cast session should record.
+
+        Supported keys in the @options vardict include:
+        <variablelist>
+          <varlistentry>
+            <term>types u</term>
+            <listitem><para>
+              Bitmask of what type of content to record. Default is MONITOR.
+            </para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>multiple b</term>
+            <listitem><para>
+              Whether to allow selecting multiple sources. Default is no.
+            </para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>restore_data (suv)</term>
+            <listitem><para>
+              The data to restore from a previous session.
+            </para>
+            <para>
+              If the stored session cannot be restored, this value is ignored
+              and the user will be prompted normally. This may happen when, for
+              example, the session contains a monitor or a window that is not
+              available anymore, or when the stored permissions are withdrawn.
+            </para>
+            <para>
+              The restore data is composed of the vendor name (e.g. "GNOME" or
+              "KDE"), the version of the implementation-specific private data,
+              and the implementation-specific private data itself.
+            </para>
+            <para>
+              This option was added in version 4 of this interface.
+            </para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>persist_mode u</term>
+            <listitem><para>
+              How this session should persist. Default is 0. Accepted values are:
+            </para>
+            <para>
+              <simplelist>
+                <member>0: Do not persist (default)</member>
+                <member>1: Permissions persist as long as the application is running</member>
+                <member>2: Permissions persist until explicitly revoked</member>
+              </simplelist>
+            </para>
+            <para>
+              If the permission for the session to persist is granted, a restore token will
+              be returned via the #org.freedesktop.portal.Request::Response signal of the
+              #org.freedesktop.portal.ScreenCast.SelectSources method.
+            </para>
+            <para>
+              This option was added in version 4 of this interface.
+            </para></listitem>
+          </varlistentry>
+        </variablelist>
+
+        For available source types, see the AvailableSourceTypes property.
+    -->
+    <method name="SelectSources">
+      <arg type="o" name="handle" direction="in"/>
+      <arg type="o" name="session_handle" direction="in"/>
+      <arg type="s" name="app_id" direction="in"/>
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In3" value="QVariantMap"/>
+      <arg type="a{sv}" name="options" direction="in"/>
+      <arg type="u" name="response" direction="out"/>
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out1" value="QVariantMap"/>
+      <arg type="a{sv}" name="results" direction="out"/>
+    </method>
+    <!--
+        Start:
+        @handle: Object path for the #org.freedesktop.impl.portal.Request object representing this call
+        @session_handle: Object path for the #org.freedesktop.impl.portal.Session object representing the session
+        @app_id: App id of the application
+        @parent_window: Identifier for the application window, see <link linkend="parent_window">Common Conventions</link>
+        @session_id: Identifier for the screen cast session
+        @options: Vardict with optional further information
+        @response: Numeric response
+        @results: Vardict with the results of the call
+
+        Start the screen cast session. This will typically result the portal presenting
+        a dialog letting the user do the selection set up by SelectSources.
+
+        The following results get returned via the #org.freedesktop.portal.Request::Response signal:
+        <variablelist>
+          <varlistentry>
+            <term>streams a(ua{sv})</term>
+            <listitem><para>
+              An array of PipeWire streams. Each stream consists of a PipeWire
+              node ID (the first element in the tuple, and a Vardict of
+              properties.
+
+              The array will contain a single stream if 'multiple' (see
+              SelectSources) was set to 'false', or at least one stream if
+              'multiple' was set to 'true' as part of the SelectSources method.
+            </para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>persist_mode u</term>
+            <listitem><para>
+              Portal implementations can optionally offer ways to "reduce" the
+              persist mode, for example by explicitly asking the user. See the
+              'persist_mode' option of SelectSources for a list of possible
+              values.
+
+              If no persist mode is returned by the Start request, it is assumed
+              to be the same persist mode received during SelectSources.
+
+              This option was added in version 4 of this interface.
+            </para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>restore_data (suv)</term>
+            <listitem><para>
+              The data to be restored. This is the data that a portal
+              implementation sent in reaction to transient or persistent
+              modes.
+            </para>
+            <para>
+              This data will be stored in the permission store if the effective
+              persist mode is 2, and may be passed in the future as part of the
+              SelectSources() method call. The portal backend should store enough
+              information in 'restore_data' to be able to restore the session
+              later. The portal backend can deal with unavailable sources however
+              they see fit.
+            </para>
+            <para>
+              Data generated by a portal implementation must be consumable by
+              the same portal implementation, but not necessarily by others.
+              Thus, it is important to properly handle 'restore_data' not being
+              in a valid format. This may happen when, e.g., the user switched
+              to another desktop environment, or is using a different portal
+              implementation.
+            </para>
+            <para>
+              This response option was added in version 4 of this interface.
+            </para></listitem>
+          </varlistentry>
+        </variablelist>
+
+        Stream properties include:
+        <variablelist>
+          <varlistentry>
+            <term>position (ii)</term>
+            <listitem><para>
+              A tuple consisting of the position (x, y) in the compositor
+              coordinate space. Note that the position may not be equivalent to a
+              position in a pixel coordinate space. Only available for monitor
+              streams.
+            </para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>size (ii)</term>
+            <listitem><para>
+              A tuple consisting of (width, height). The size represents the size
+              of the stream as it is displayed in the compositor coordinate
+              space. Note that this size may not be equivalent to a size in a
+              pixel coordinate space. The size may differ from the size of the
+              stream.
+            </para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>source_type u</term>
+            <listitem><para>
+              The type of the content which is being screen casted.
+              For available source types, see the AvailableSourceTypes property.
+              This property was added in version 3 of this interface.
+            </para></listitem>
+          </varlistentry>
+        </variablelist>
+    -->
+    <method name="Start">
+      <arg type="o" name="handle" direction="in"/>
+      <arg type="o" name="session_handle" direction="in"/>
+      <arg type="s" name="app_id" direction="in"/>
+      <arg type="s" name="parent_window" direction="in"/>
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In4" value="QVariantMap"/>
+      <arg type="a{sv}" name="options" direction="in"/>
+      <arg type="u" name="response" direction="out"/>
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out1" value="QVariantMap"/>
+      <arg type="a{sv}" name="results" direction="out"/>
+    </method>
+    <!--
+        AvailableSourceTypes:
+
+        A bitmask of available source types. Currently defined types are:
+
+        <simplelist>
+          <member>1: MONITOR</member>
+          <member>2: WINDOW</member>
+          <member>4: VIRTUAL</member>
+        </simplelist>
+    -->
+    <property name="AvailableSourceTypes" type="u" access="read"/>
+    <!--
+        AvailableCursorModes:
+
+        Available cursor mode values:
+        <simplelist>
+          <member>1: Hidden. The cursor is not part of the screen cast stream.</member>
+          <member>2: Embedded: The cursor is embedded as part of the stream buffers.</member>
+          <member>4: Metadata: The cursor is not part of the screen cast stream, but sent as PipeWire stream metadata.</member>
+        </simplelist>
+    -->
+    <property name="AvailableCursorModes" type="u" access="read"/>
+    <property name="version" type="u" access="read"/>
+  </interface>
+</node>

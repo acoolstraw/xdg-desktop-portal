@@ -1,0 +1,168 @@
+# Indonesian translation for xdg-desktop-portal.
+# Copyright (C) 2017 xdg-desktop-portal's COPYRIGHT HOLDER
+# This file is distributed under the same license as the xdg-desktop-portal package.
+# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017-2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xdg-desktop-portal master\n"
+"Report-Msgid-Bugs-To: https://github.com/flatpak/xdg-desktop-portal/issues\n"
+"POT-Creation-Date: 2022-03-16 22:02-0700\n"
+"PO-Revision-Date: 2022-03-28 18:31+0700\n"
+"Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
+"Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: src/background.c:260
+#, c-format
+msgid "Allow %s to run in the background?"
+msgstr "Izinkan %s berjalan di latar belakang?"
+
+#: src/background.c:264
+#, c-format
+msgid "%s requests to be started automatically and run in the background."
+msgstr ""
+"%s meminta untuk dimulai secara otomatis dan dijalankan di latar belakang."
+
+#: src/background.c:266
+#, c-format
+msgid "%s requests to run in the background."
+msgstr "%s meminta untuk berjalan di latar belakang."
+
+#: src/background.c:267
+msgid ""
+"The ‘run in background’ permission can be changed at any time from the "
+"application settings."
+msgstr ""
+"Izin 'berjalan di latar belakang' dapat diubah kapan saja dari pengaturan "
+"aplikasi."
+
+#: src/background.c:272
+msgid "Don't allow"
+msgstr "Jangan izinkan"
+
+#: src/background.c:273 src/wallpaper.c:181
+msgid "Allow"
+msgstr "Izinkan"
+
+#: src/device.c:115
+msgid "Turn On Microphone?"
+msgstr "Hidupkan Mikrofon?"
+
+#: src/device.c:116
+msgid ""
+"Access to your microphone can be changed at any time from the privacy "
+"settings."
+msgstr ""
+"Akses ke mikrofon Anda dapat diubah sewaktu-waktu dari pengaturan privasi."
+
+#: src/device.c:120
+msgid "An application wants to use your microphone."
+msgstr "Aplikasi ingin menggunakan mikrofon Anda."
+
+#: src/device.c:122
+#, c-format
+msgid "%s wants to use your microphone."
+msgstr "%s ingin menggunakan mikrofon Anda."
+
+#: src/device.c:128
+msgid "Turn On Speakers?"
+msgstr "Hidupkan Speaker?"
+
+#: src/device.c:129
+msgid ""
+"Access to your speakers can be changed at any time from the privacy settings."
+msgstr ""
+"Akses ke speaker Anda dapat berubah sewaktu-waktu dari pengaturan privasi."
+
+#: src/device.c:133
+msgid "An application wants to play sound."
+msgstr "Aplikasi ingin memutar suara."
+
+#: src/device.c:135
+#, c-format
+msgid "%s wants to play sound."
+msgstr "%s ingin memutar suara."
+
+#: src/device.c:141
+msgid "Turn On Camera?"
+msgstr "Hidupkan Kamera?"
+
+#: src/device.c:142
+msgid ""
+"Access to your camera can be changed at any time from the privacy settings."
+msgstr ""
+"Akses ke kamera Anda dapat diubah sewaktu-waktu dari pengaturan privasi."
+
+#: src/device.c:146
+msgid "An application wants to use your camera."
+msgstr "Aplikasi ingin menggunakan kamera Anda."
+
+#: src/device.c:148
+#, c-format
+msgid "%s wants to use your camera."
+msgstr "%s ingin menggunakan kamera Anda."
+
+#: src/location.c:527
+msgid "Deny Access"
+msgstr "Tolak Akses"
+
+#: src/location.c:529
+msgid "Grant Access"
+msgstr "Beri Akses"
+
+#: src/location.c:535
+msgid "Grant Access to Your Location?"
+msgstr "Beri Akses ke Lokasi Anda?"
+
+#: src/location.c:536
+msgid "An application wants to use your location."
+msgstr "Sebuah aplikasi ingin menggunakan lokasi Anda."
+
+#: src/location.c:548
+#, c-format
+msgid "Give %s Access to Your Location?"
+msgstr "Beri Akses %s ke Lokasi Anda?"
+
+#: src/location.c:552
+#, c-format
+msgid "%s wants to use your location."
+msgstr "%s ingin menggunakan lokasi Anda."
+
+#: src/location.c:555
+msgid "Location access can be changed at any time from the privacy settings."
+msgstr "Akses lokasi dapat diubah setiap saat dari pengaturan privasi."
+
+#: src/settings.c:124
+msgid "Requested setting not found"
+msgstr "Pengaturan yang diminta tidak ditemukan"
+
+#: src/wallpaper.c:179
+msgid "Deny"
+msgstr "Tolak"
+
+#: src/wallpaper.c:191
+msgid "Allow Applications to Set Backgrounds?"
+msgstr "Izinkan Aplikasi untuk Mengatur Latar Belakang?"
+
+#: src/wallpaper.c:192
+msgid "An application is requesting to be able to change the background image."
+msgstr "Aplikasi meminta untuk dapat mengubah gambar latar belakang."
+
+#: src/wallpaper.c:204
+#, c-format
+msgid "Allow %s to Set Backgrounds?"
+msgstr "Izinkan %s untuk Mengatur Latar Belakang?"
+
+#: src/wallpaper.c:205
+#, c-format
+msgid "%s is requesting to be able to change the background image."
+msgstr "%s meminta untuk dapat mengubah gambar latar belakang."
+
+#: src/wallpaper.c:208
+msgid "This permission can be changed at any time from the privacy settings."
+msgstr "Izin ini dapat diubah kapan saja dari pengaturan privasi."
